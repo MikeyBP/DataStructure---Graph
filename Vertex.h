@@ -12,6 +12,9 @@ class Vertex {
 public:
 	Vertex(std::string name);
 	void addAdjacent(Vertex* vertex);
+	int getDistance();
+	std::string getName();
+	Vertex* getRoute();
 	virtual ~Vertex();
 private:
 	std::string _name;
@@ -20,7 +23,7 @@ private:
 	Vertex* _nextAdjacent;
 	Vertex* _nextQueueVertex;
 	Vertex* _route;
-	int _visited;
+	int _distance;
 	friend class Queue;
 	friend class Graph;
 };

@@ -8,18 +8,15 @@
 #include "Vertex.h"
 
 
-Vertex::Vertex(std::string name): _name(name), _firstAdjacent(NULL),_lastAdjacent(NULL),_nextAdjacent(NULL),_nextQueueVertex(NULL), _route(NULL), _visited(-1)
-{
+Vertex::Vertex(std::string name): _name(name), _firstAdjacent(NULL),_lastAdjacent(NULL),_nextAdjacent(NULL),_nextQueueVertex(NULL), _route(NULL), _distance(-1){
 }
 
-Vertex::~Vertex()
-{
+Vertex::~Vertex(){
 
 }
 
 void Vertex::addAdjacent(Vertex* vertex) {
 	if(_firstAdjacent == NULL){
-		_route = vertex;
 		_firstAdjacent = vertex;
 		_lastAdjacent = vertex;
 	}else{
@@ -27,3 +24,16 @@ void Vertex::addAdjacent(Vertex* vertex) {
 		_lastAdjacent = vertex;
 	}
 }
+
+int Vertex::getDistance() {
+	return _distance;
+}
+
+std::string Vertex::getName() {
+	return _name;
+}
+
+Vertex* Vertex::getRoute() {
+	return _route;
+}
+

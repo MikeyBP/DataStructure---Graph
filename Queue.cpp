@@ -31,8 +31,10 @@ Vertex *Queue::dequeue()
 	}
 
 	_size --;
+	Vertex* temp = _first;
+	_first = _first -> _nextQueueVertex;
 
-	return NULL; //wasn't sure what to return on a dequeue??
+	return temp;
 }
 
 
@@ -40,14 +42,14 @@ Vertex *Queue::dequeue()
 void Queue::enqueue(Vertex* vertex)
 {
 	if(_first == NULL) //the queue is empty
-		{
-			_first = vertex;
-			_last = vertex;
-		}else //The queue is not empty
-		{
-			_last->_nextAdjacent = vertex;
-			_last = vertex;
-		}
+	{
+		_first = vertex;
+		_last = vertex;
+	}else //The queue is not empty
+	{
+		_last->_nextQueueVertex = vertex;
+		_last = vertex;
+	}
 	_size++;
 }
 

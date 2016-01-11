@@ -20,13 +20,22 @@ Graph::~Graph(){
 }
 
 void Graph::traverse(Vertex *start){
-	std::cout << start -> _name << std::endl;
-	start -> _visited = 0;
-		Vertex* i = start -> _firstAdjacent;
-		while(i != NULL){
-		     traverse(i);
-		     i = i -> _nextAdjacent;
-		}
+	start -> _distance = 0;
+	_queue -> enqueue(start);
+	Vertex* i;
+	Vertex* adjacent;
+	while(!_queue -> isEmpty()){
+	     i = _queue -> dequeue();
+	     adjacent = i -> _firstAdjacent;
+	     while(adjacent != NULL){
+	    	 if(adjacent -> _distance == -1){
+		    	 _queue -> enqueue(adjacent);
+		    	 adjacent -> _distance = i -> _distance + 1;
+		    	 adjacent -> _route = i;
+	    	 }
+	    	 adjacent = adjacent -> _nextAdjacent;
+	     }
+	}
 }
 
 Queue* Graph::getQueue() {

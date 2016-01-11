@@ -13,21 +13,23 @@ int main()
 {
 	Graph* g = new Graph();
 
-	Vertex* chicago = new Vertex("Chicago");
-	Vertex* newyork = new Vertex("New York");
-	Vertex* boston = new Vertex("Boston");
-	Vertex* portland = new Vertex("Portland");
-	Vertex* lasvegas = new Vertex("Las Vegas");
-	Vertex* sanfrancisco = new Vertex("San Francisco");
+	Vertex* c = new Vertex("Chicago");
+	Vertex* b = new Vertex("Boston");
+	Vertex* a = new Vertex("Las Vegas");
+	Vertex* d = new Vertex("Detroit");
 
-	g->getQueue()->enqueue(portland);
-	g->getQueue()->enqueue(boston);
-	g->getQueue()->enqueue(lasvegas);
-	g->getQueue()->enqueue(newyork);
-	g->getQueue()->enqueue(sanfrancisco);
-	g->getQueue()->enqueue(chicago);
+	a->addAdjacent(b);
+	b->addAdjacent(c);
+	c->addAdjacent(d);
 
-	g->traverse(portland);
+	g->traverse(a);
+
+	cout << "The trip from " << a->getName() << " to " << d->getName() << " requires " << d-> getDistance() << " flights" << endl;
+	Vertex* i = d;
+	while(i != NULL){
+		cout << i -> getName() << endl;
+		i = i -> getRoute();
+	}
 
 	return 0;
 }
